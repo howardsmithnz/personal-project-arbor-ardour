@@ -1,0 +1,11 @@
+/* style.css */
+
+h3 {
+	color: red;
+}
+
+body {
+	background: #AAA;
+  	font-family: 'Open Sans', sans-serif;
+  	padding: 1px 25px;
+}
