@@ -13,6 +13,7 @@ app.post('/', function (req, res) {
   // TO DO: echo back the input values from the user as a JSON object
   // res.send('Got a POST request');
   console.log("POST for / received")
+  console.log("Req is: ", req)
 });
 
 app.listen(3000, function () {
