@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Tree Tracker</title>
+  <title>ArborArdour</title>
   <meta name="description" content="A blog">
   <meta name="author" content="Howard Smith">
 
@@ -30,6 +30,20 @@
 
   <!-- jQuery -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+
+  <!-- Google Maps API -->
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+  <script>
+  function initialize() {
+    var mapProp = {
+      center:new google.maps.LatLng(-41.2959077,174.835732),
+      zoom:10,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
 
 </head>
 <body>
@@ -65,7 +79,7 @@
     <main class="row textpanel">
       <div class="row">
         <div class="six columns">
-          <h1>Tree Tracker</h1><h3>Let's find some nice trees!</h3>
+          <h1>ArborArdour</h1><h3>Let's find some lovely trees!</h3>
         </div>
         <div class="three columns">
         </div>
@@ -76,9 +90,10 @@
       <div class="row">
         <section>
           <h3>Trees found:</h3>
-          <p>
-           TREE: Rimu AT: 123 XYZ St.<br>TREE: Totara AT: 456 ABC Rd.
-          </p>
+          <ul id="tree_list">
+            <li>TREE: Rimu AT: 123 XYZ St.</li>
+            <li>TREE: Totara AT: 456 ABC Rd. </li>
+          </ul>
           <p>
            
           </p>
@@ -88,25 +103,25 @@
         <div class="six columns" id="form">
           <section>
             <h3>Enter new tree here:</h3>
-            <p>
+            <!-- <p>
            Form goes here
-            </p>
+            </p> -->
 
             <form action="/" method="post">
                 <div>
                     <label for="tree_name">Tree Name:</label>
-                    <input type="text" id="tree_name" />
+                    <input type="text" name="tree_name" />
                 </div>
                 <div>
                     <label for="place">Place:</label>
-                    <input type="text" id="place" />
+                    <input type="text" name="place" />
                 </div>
                 <div>
                     <label for="notes">Notes:</label>
-                    <textarea id="notes"></textarea>
+                    <textarea name="notes"></textarea>
                 </div>
                 <div class="button">
-                    <button type="submit">Add this tree</button>
+                    <button id="add_button" type="submit">Add this tree</button>
                 </div>
             </form>
             
@@ -115,6 +130,7 @@
         <div class="six columns" id="other">
           <p>Other stuff goes here</p>
           <p>...maybe a map or something...</p>
+          <div id="googleMap" style="width:500px;height:380px;"></div>
         </div>
       </div>
     </main>
