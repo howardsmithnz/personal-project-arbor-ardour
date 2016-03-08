@@ -23,10 +23,10 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res, next) {
   // TO DO: echo back the input values from the user as a JSON object
-  res.json(req.body);
-  // res.se
   console.log("POST for / received")
   console.log("req.body is: ",req.body)
+  res.json(req.body);
+  
   // console.log("req.query is: ",req.query)
   // console.log("Req.body is of type: ", (typeof req.body))
 });
