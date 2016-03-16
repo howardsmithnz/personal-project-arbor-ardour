@@ -5,6 +5,8 @@ $(document).ready(function(){
 		e.preventDefault()
 		var tree_name = $('#tree_name').val()
 		// var tree_name = 'Vanilla'
+		var lat = $('#lat').val()
+		var longd = $('#longd').val()
 		var place = $('#place').val()
 		// var place = 'VanillaTown'
 		var notes = $('#notes').val()
@@ -13,6 +15,8 @@ $(document).ready(function(){
 	  var dataToPost = {
 	  	tree_name: tree_name,
 	  	place: place,
+	  	lat: lat,
+	  	longd: longd,
 	  	notes: notes
 	  }
 
@@ -20,7 +24,7 @@ $(document).ready(function(){
 	  $.post('/', dataToPost, function(data, status)  {
 	  	console.log("Posted stuff")
 	    console.log('data', data)
-	    $("ul").append('<li>TREE: ' + tree_name + ' AT: ' + place + ' NOTES: ' + notes + '</li>')
+	    $("ul").append('<li>TREE: ' + tree_name + ' AT: ' + place + ' LAT: ' + lat+ ' LONG: ' + longd + ' NOTES: ' + notes + '</li>')
 	    // // var arr = data.Trees
 	    // //   for (var i=0; i<arr.length; i++){
 	    // //     $("ul").append('<li>'+arr[i]+'</li>')
