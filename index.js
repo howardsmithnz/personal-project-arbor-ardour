@@ -3,6 +3,10 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+// ----- bogus data for testing ----- //
+
+var fakeJSONTreeList = { "trees": ["<li>TREE: Kanuka AT: 765 Farm Rd. </li>", "<li>TREE: Kauri AT: 234 Beach Rd. </li>", "<li>TREE: Puriri AT: 23 Raglan Rd. </li>"]}
+
 // ----- set up middleware ----- //
 
 app.use(bodyParser.json());  // support json encoded bodies
@@ -23,7 +27,8 @@ app.get('/', function (req, res) {
 
 app.get('/trees', function (req, res) {
   console.log("GET for /trees received")
-  res.send("GET for /trees is OK")
+  // res.send("GET for /trees is OK")
+  res.json()
 });
 
 app.post('/', function (req, res, next) {

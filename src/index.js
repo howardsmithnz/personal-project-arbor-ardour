@@ -2,8 +2,14 @@
 
 $(document).ready(function(){
 	$.get('/trees', function(data, status) {
-	   	alert('GET /trees was OK')
-      	$("#tree_list").html("<li>TREE: Oak AT: 123 Sherwood St.</li>")
+	   	// alert('GET /trees was OK')
+	   	var arr = data.trees
+	   	var trees_found = ''
+	   	 for (var i=0; i<arr.length; i++){
+      		// trees_found = trees_found + data.trees[i]
+      		trees_found = trees_found + data.trees[i]
+      	}
+      	$("#tree_list ").html(trees_found)
 	})
 
 	
