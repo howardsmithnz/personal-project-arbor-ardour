@@ -5,7 +5,27 @@ var app = express();
 
 // ----- bogus data for testing ----- //
 
-var fakeJSONTreeList = { "trees": ["<li>TREE: Kanuka AT: 765 Farm Rd. </li>", "<li>TREE: Kauri AT: 234 Beach Rd. </li>", "<li>TREE: Puriri AT: 23 Raglan Rd. </li>"]}
+// var fakeJSONTreeList = { "trees": ["<li>TREE: Kanuka AT: 765 Farm Rd. </li>", "<li>TREE: Kauri AT: 234 Beach Rd. </li>", "<li>TREE: Puriri AT: 23 Raglan Rd. </li>"]}
+var fakeJSONTreeList = { "trees": [
+                                          {
+                                            tree_name: 'rewarewa',
+                                            place: 'kelburn',
+                                            lat: -42.3,
+                                            longd: 172.2,
+                                            notes: 'A very tall tree'
+                                          }
+                                        ]
+                                    }
+
+// var dataToPost = {
+//       tree_name: tree_name,
+//       place: place,
+//       lat: lat,
+//       longd: longd,
+//       notes: notes
+//     }
+
+
 
 // ----- set up middleware ----- //
 
@@ -28,7 +48,7 @@ app.get('/', function (req, res) {
 app.get('/trees', function (req, res) {
   console.log("GET for /trees received")
   // res.send("GET for /trees is OK")
-  res.json()
+  res.json(fakeJSONTreeList)
 });
 
 app.post('/', function (req, res, next) {
