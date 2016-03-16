@@ -1,16 +1,20 @@
-// var $ = require('jquery')
+// event handlers for client
 
 $(document).ready(function(){
+	$.get('/trees', function(data, status) {
+	   	alert('GET /trees was OK')
+      	$("#tree_list").html("<li>TREE: Oak AT: 123 Sherwood St.</li>")
+	})
+
+	
+
 	$("#add_button").click(function(e){
 		e.preventDefault()
 		var tree_name = $('#tree_name').val()
-		// var tree_name = 'Vanilla'
 		var lat = $('#lat').val()
 		var longd = $('#longd').val()
 		var place = $('#place').val()
-		// var place = 'VanillaTown'
 		var notes = $('#notes').val()
-		// var notes = 'Yum'
 
 	  var dataToPost = {
 	  	tree_name: tree_name,
@@ -33,4 +37,4 @@ $(document).ready(function(){
 	});
 });
 
-console.log("Hello from Browserified index.js")
+console.log("Hello from a newly Browserified index.js with GET /trees")
