@@ -1,7 +1,20 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var sqlite = require('sqlite3');
 
 var app = express();
+
+// ----- set up DB ----- //
+
+var knex = require('knex') ({
+  client: 'sqlite3',
+  connection: {
+    filename: './data/arbor_ardour_db.sqlite'
+  },
+  useNullAsDefault: true
+})
+
+var db = require('./db.js')(knex)
 
 // ----- bogus data for testing ----- //
 
@@ -46,13 +59,56 @@ app.get('/', function (req, res) {
 });
 
 app.get('/trees', function (req, res) {
+  // check if it has a query string, if so then...
+  if (Object.keys(req.query).length !== 0) {
+    console.log("GET received on /treea with parameters")
+    console.log("req.query is: ", req.query)
+    // use knex to do 'SELECT * FROM trees WHERE fieldY = paramX' to sqlite DB
+    db.findOne('trees', { id: req.query.id }, function (err, tree) {
+        console.log("tree is: ", tree)
+        res.json({ "trees": [ tree ]})
+    })
+  }
+  else {
+    console.log("GET received on /trees")
+    console.log(req.query)
+    // use knex to do 'SELECT * FROM trees' to sqlite DB
+    db.getAll('trees', function (err, trees) {
+      console.log('tree', trees)
+      res.json({ "trees": trees })
+      })
+  }
+});
+
+app.get('/trees/:id', function (req, res) {
+  console.log("GET received on /trees/:id")
+  // use knex to do 'SELECT * FROM trees WHERE id=3' to sqlite DB
+  db.findOne('trees', { id: req.params.id }, function (err, tree) {
+      console.log(tree)
+      res.json({ "trees": [ tree ]})
+  })
+});
+
+app.post('/', function (req, res) {
+  console.log("POST received on /")
+  // create new tree in DB
+  console.log("req.body is: ", req.body)
+  //use knex to insert specific tree to DB and assign own unique tree ID
+   db.add('trees', req.body, function (err, tree) {
+     console.log("err is: ", err)
+     console.log("tree added to DB: ", tree)
+     res.json({ "trees": [ tree ]})
+  })
+});
+
+app.get('/faketrees', function (req, res) {
   console.log("GET for /trees received")
   // res.send("GET for /trees is OK")
   res.json(fakeJSONTreeList)
 });
 
-app.post('/', function (req, res, next) {
-  console.log("POST for / received")
+app.post('/ping', function (req, res, next) {
+  console.log("POST for /ping received")
   console.log("req.body is: ",req.body)
   res.json(req.body);
   
