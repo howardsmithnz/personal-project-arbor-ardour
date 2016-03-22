@@ -88,30 +88,12 @@
         </div>
       </div>
       <div class="row">
-        <section>
-          <h3>Trees found:</h3>
-          <ul id="tree_list">
-            <li>TREE: Rimu AT: 123 XYZ St.</li>
-            <li>TREE: Totara AT: 456 ABC Rd. </li>
-          </ul>
-          <p>
-           
-          </p>
-        </section>
-      </div>
-      <div class="row">
         <div class="six columns" id="form">
           <section>
             <h3>Enter new tree here:</h3>
-            <!-- <p>
-           Form goes here
-            </p> -->
-
-            <!-- <form action="/" method="post"> -->
             <form>
                 <div>
                     <label for="tree_name">Tree Name:</label>
-                    <!-- <input type="text" name="tree_name" /> -->
                     <input type="text" id="tree_name" />
                 </div>
                 <div>
@@ -119,11 +101,18 @@
                     <input type="text" id="place" />
                 </div>
                 <div>
+                    <label for="lat">Lat:</label>
+                    <input type="text" id="lat" />
+                </div>
+                <div>
+                    <label for="longd">Long:</label>
+                    <input type="text" id="longd" />
+                </div>
+                <div>
                     <label for="notes">Notes:</label>
                     <textarea id="notes"></textarea>
                 </div>
                 <div class="button">
-                    <!-- <button id="add_button" type="submit">Add this tree</button> -->
                     <button id="add_button" >Add this tree</button>
                 </div>
             </form>
@@ -131,16 +120,23 @@
           </section>
         </div>
         <div class="six columns" id="other">
-          <p>Other stuff goes here</p>
-          <p>...maybe a map or something...</p>
           <div id="googleMap" style="width:500px;height:380px;"></div>
         </div>
+      </div>
+      <div class="row">
+        <section>
+          <h3>Trees found:</h3>
+          <ul id="tree_list">
+            <!-- <li>TREE: Rimu AT: 123 XYZ St.</li> -->
+            <!-- <li>TREE: Totara AT: 456 ABC Rd. </li> -->
+          </ul>
+        </section>
       </div>
     </main>
 
     <footer class="row textpanel">
       <p>
-      Copyright 2015. Have a nice day!
+      Copyright 2016. Have a nice day!
       </p>
     </footer>
 
