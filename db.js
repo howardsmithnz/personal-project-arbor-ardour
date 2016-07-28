@@ -4,15 +4,15 @@ module.exports = function (knex) {
     // SELECT * FROM table
     getAll: function (table, callback) {
       knex.select().table(table).then(function (resp) {
-      callback(null, resp)
+        callback(null, resp)
       })
     },
 
     // SELECT * FROM table WHERE ...
     findOne: function (table, params, callback) {
       var key = Object.keys(params)[0]
-      console.log(key,params[key])
-      knex(table).where( key, params[key]).then(function (resp) {
+      console.log(key, params[key])
+      knex(table).where(key, params[key]).then(function (resp) {
         callback(null, resp[0])
       })
     },
@@ -27,8 +27,7 @@ module.exports = function (knex) {
       valueString = valueString.join('", "')
 
       knex(table).insert(params).then(function (resp) {
-      callback(null, resp[0])
-
+        callback(null, resp[0])
       })
     }
   }

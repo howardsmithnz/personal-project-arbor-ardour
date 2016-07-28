@@ -10,7 +10,7 @@ test('simple test', function(t) {
 	var boo = app.sayBoo()
 
     //assert: test if actual equals expected
-    t.ok()
+    t.ok(1)
     t.equal(1,1, "It's 1!")
 	t.equal(boo, "Boo!", "These both should say Boo!")
 

@@ -1,5 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var hbs = require('express-hbs') // handlebars
+var session = require('express-session') // for logins
 var sqlite = require('sqlite3');
 
 var app = express();
@@ -15,6 +17,8 @@ var knex = require('knex') ({
 })
 
 var db = require('./db.js')(knex)
+
+
 
 // ----- bogus data for testing ----- //
 
@@ -38,9 +42,17 @@ var fakeJSONTreeList = { "trees": [
 //       notes: notes
 //     }
 
-
-
 // ----- set up middleware ----- //
+
+// ----- handlebars ----- //
+app.engine('hbs', hbs.express4({
+  partialsDir: __dirname + '/views/partials',
+  defaultLayout: __dirname + '/views/layout'
+}))
+
+app.set('view engine', 'hbs')
+app.set('views', __dirname + '/views')
+
 
 app.use(bodyParser.json());  // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
@@ -52,6 +64,44 @@ app.use(function (req, res, next) {
 
 app.use(express.static('public'));
 
+app.use(session({ // for logins
+  secret: 'ssshhhhhh! Top secret!',
+  saveUninitialized: true,
+  resave: true,
+  db: knex
+}))
+
+// ----- logins ----- //
+
+app.get('/sign-in', function (req, res) {
+  res.render('sign-in')
+})
+
+app.post('/sign-in', function (req, res) {
+  req.session.userId = 7
+  res.redirect('/')
+})
+
+app.get('/sign-up', function (req, res) {
+  res.render('sign-up')
+})
+
+app.post('/sign-up', function (req, res) {
+  req.session.userId = 8
+  res.redirect('/')
+})
+
+// Logout endpoint
+app.get('/sign-out', function (req, res) {
+  // Add logout code here
+  req.session.destroy()
+  res.redirect('/sign-in')
+})
+
+// app.get('/', function (req, res) {
+//   res.render('index', {id: req.session.userId})
+// })
+
 // ----- routes ----- //
 
 app.get('/', function (req, res) {
@@ -61,7 +111,7 @@ app.get('/', function (req, res) {
 app.get('/trees', function (req, res) {
   // check if it has a query string, if so then...
   if (Object.keys(req.query).length !== 0) {
-    console.log("GET received on /treea with parameters")
+    console.log("GET received on /trees with parameters")
     console.log("req.query is: ", req.query)
     // use knex to do 'SELECT * FROM trees WHERE fieldY = paramX' to sqlite DB
     db.findOne('trees', { id: req.query.id }, function (err, tree) {
@@ -71,7 +121,7 @@ app.get('/trees', function (req, res) {
   }
   else {
     console.log("GET received on /trees")
-    console.log(req.query)
+    console.log("req.query is: ", req.query)
     // use knex to do 'SELECT * FROM trees' to sqlite DB
     db.getAll('trees', function (err, trees) {
       console.log('tree', trees)
