@@ -165,7 +165,7 @@ app.post('/ping', function (req, res, next) {
 // ----- test of handlebars templating ----- //
 
 app.get('/hbstest', function (req, res) {
-  res.render('mytest', { name: 'Howard'})
+  res.render('mytest', { name: 'Bob'})
 })
 
 // ----- set up port on server ----- //
