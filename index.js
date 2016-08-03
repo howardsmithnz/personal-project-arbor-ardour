@@ -162,6 +162,12 @@ app.post('/ping', function (req, res, next) {
 // console.log("Req.body is of type: ", (typeof req.body))
 })
 
+// ----- test of handlebars templating ----- //
+
+app.get('/hbstest', function (req, res) {
+  res.render('mytest', { name: 'Howard'})
+})
+
 // ----- set up port on server ----- //
 
 app.listen(3000, function () {
