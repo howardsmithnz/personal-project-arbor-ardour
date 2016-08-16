@@ -1,6 +1,6 @@
 var express = require('express')
 var bodyParser = require('body-parser')
-var hbs = require('express-hbs') // handlebars
+var exphbs = require('express-handlebars') // handlebars
 var session = require('express-session') // for logins
 var sqlite = require('sqlite3')
 
@@ -43,13 +43,12 @@ var fakeJSONTreeList = { 'trees': [
 // ----- set up middleware ----- //
 
 // ----- handlebars ----- //
-app.engine('hbs', hbs.express4({
-  partialsDir: __dirname + '/views/partials',
-  defaultLayout: __dirname + '/views/layout'
+app.engine('.hbs', exphbs({
+  defaultLayout: 'main',
+  extname: '.hbs'
 }))
 
-app.set('view engine', 'hbs')
-app.set('views', __dirname + '/views')
+app.set('view engine', '.hbs')
 
 app.use(bodyParser.json()) // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
@@ -165,7 +164,7 @@ app.post('/ping', function (req, res, next) {
 // ----- test of handlebars templating ----- //
 
 app.get('/hbstest', function (req, res) {
-  res.render('mytest', { name: 'Bob'})
+  res.render('home', { name: 'Bob'})
 })
 
 // ----- set up port on server ----- //
