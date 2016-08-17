@@ -11,7 +11,7 @@ var app = express()
 var knex = require('knex')({
   client: 'sqlite3',
   connection: {
-    filename: './data/arbor_ardour_db.sqlite'
+    filename: './data/abarada_db.sqlite'
   },
   useNullAsDefault: true
 })
@@ -170,7 +170,7 @@ app.get('/hbstest', function (req, res) {
 // ----- set up port on server ----- //
 
 app.listen(3000, function () {
-  console.log('aBaRaDa app listening on port 3000!')
+  console.log('abarada app listening on port 3000!')
 })
 
 // ----- bogus function for testing ----- //
