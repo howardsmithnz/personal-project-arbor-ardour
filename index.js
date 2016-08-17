@@ -170,7 +170,7 @@ app.get('/hbstest', function (req, res) {
 // ----- set up port on server ----- //
 
 app.listen(3000, function () {
-  console.log('ArborArdour app listening on port 3000!')
+  console.log('aBaRaDa app listening on port 3000!')
 })
 
 // ----- bogus function for testing ----- //
