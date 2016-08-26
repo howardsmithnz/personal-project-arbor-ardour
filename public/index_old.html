@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Abarada</title>
+  <meta name="description" content="A geo-tagging app">
+  <meta name="author" content="Howard Smith">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  <!-- <link rel="stylesheet" href="styles/main.css"> -->
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <!-- jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.js"></script>
+
+  <!-- Google Maps API -->
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+  <script>
+  function initialize() {
+    var mapProp = {
+      center:new google.maps.LatLng(-41.2959077,174.835732),
+      zoom:10,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    var marker = new google.maps.Marker({ position: mapProp.center, });
+    marker.setMap(map);
+    var infowindow = new google.maps.InfoWindow({
+      content:"Hello World!"
+    });
+    infowindow.open(map,marker);
+    // Zoom to 9 when clicking on marker
+    google.maps.event.addListener(marker,'click',function() {
+        map.setZoom(9);
+        map.setCenter(marker.getPosition());
+      });
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </script>
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="container">
+
+    <header class="row textpanel">
+      <div class="nav-row">
+        
+        <div class="six columns nav-col">
+          <h1>Abarada</h1>
+        </div>
+        <div class="six columns nav-col">
+          <a href="#">Home</a>
+          <a href="#">Add</a>
+          <a href="#">Alert</a>
+          <a href="#">Chat</a>
+          <a href="#">Search</a>
+          <a href="#">About</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="row textpanel">
+      <div class="row textpanel twelve columns">
+
+        <div class="row">
+          <div class="six columns">
+            <div id="googleMap" style="width:300px;height:300px;"></div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="two columns">
+            <button>+</button>
+          </div>
+          <div class="two columns">
+            <button>?</button>
+          </div>
+          <div class="two columns">
+            <button>x</button>
+          </div>
+          <div class="six columns">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="six columns" id="form">
+          <section>
+            <h3>Enter new tree here:</h3>
+            <form>
+                <div>
+                    <label for="tree_name">Tree Name:</label>
+                    <input type="text" id="tree_name" />
+                </div>
+                <div>
+                    <label for="place">Place:</label>
+                    <input type="text" id="place" />
+                </div>
+                <div>
+                    <label for="lat">Lat:</label>
+                    <input type="text" id="lat" />
+                </div>
+                <div>
+                    <label for="longd">Long:</label>
+                    <input type="text" id="longd" />
+                </div>
+                <div>
+                    <label for="notes">Notes:</label>
+                    <textarea id="notes"></textarea>
+                </div>
+                <div class="button">
+                    <button id="add_button" >Add this tree</button>
+                </div>
+            </form>
+            
+          </section>
+        </div>
+        <!-- <div class="six columns" id="other">
+          This is just six columns of nothing
+        </div> -->
+      </div>
+      <div class="row">
+        <section>
+          <h3>Trees found:</h3>
+          <ul id="tree_list">
+            <!-- <li>TREE: Rimu AT: 123 XYZ St.</li> -->
+            <!-- <li>TREE: Totara AT: 456 ABC Rd. </li> -->
+          </ul>
+        </section>
+      </div>
+    </main>
+
+    <footer class="row textpanel">
+      <p>
+      Copyright 2016. Have a nice day!
+      </p>
+    </footer>
+
+  </div>
+<script src="./bundle.js"></script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>

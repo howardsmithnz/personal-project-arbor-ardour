@@ -178,6 +178,8 @@ function sayBoo () {
   return 'Boo!'
 }
 
+// this is a comment
+
 module.exports = {
   sayBoo: sayBoo,
 // hbstest: hbstest
