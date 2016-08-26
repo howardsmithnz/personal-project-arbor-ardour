@@ -1,9 +1,6 @@
 var test = require('tape')
 var app = require('../index.js')
 
-// var sayBoo = 
-// arrange: fakeDate, expectedResults
-
 test('simple test', function (t) {
   t.plan(3)
   // action: call the function and assign to 'actualSmthng'
@@ -15,7 +12,6 @@ test('simple test', function (t) {
   t.equal(boo, 'Boo!', 'These both should say Boo!')
 
   t.end()
-// t.timeoutAfter(2000)
 })
 
 test.onFinish(function () {
