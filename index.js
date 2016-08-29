@@ -100,9 +100,9 @@ app.use(express.static('public'))
 
 // ----- routes ----- //
 
-app.get('/', function (req, res) {
-  console.log('GET for / received')
-})
+// app.get('/', function (req, res) {
+//   console.log('GET for / received')
+// })
 
 app.get('/trees', function (req, res) {
   // check if it has a query string, if so then...
@@ -166,12 +166,21 @@ app.get('/test', function (req, res) {
   res.render('test', { message: 'this is the test'})
 })
 
-// ----- test of handlebars templating ----- //
-
-app.get('/hbstest', function (req, res) {
-  console.log('GET received on /hbstest ')
+app.get('/', function (req, res) {
+  console.log('GET received on / ')
+  console.log('will render handlebars home')
   res.render('home', { message: 'this is the Handlebars version'})
 })
+
+app.get('/add', function (req, res) {
+  console.log('GET received on /add')
+  res.render('add', { message: 'this is the add'})
+})
+app.get('/show', function (req, res) {
+  console.log('GET received on /show')
+  res.render('show', { message: 'this is the show'})
+})
+
 // ----- set up port on server ----- //
 
 app.listen(3000, function () {
