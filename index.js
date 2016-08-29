@@ -1,7 +1,7 @@
 var express = require('express')
 var bodyParser = require('body-parser')
 var exphbs = require('express-handlebars') // handlebars
-var session = require('express-session') // for logins
+// var session = require('express-session') // for logins
 var sqlite = require('sqlite3')
 
 var app = express()
@@ -60,39 +60,39 @@ app.use(function (req, res, next) {
 
 app.use(express.static('public'))
 
-app.use(session({ // for logins
-  secret: 'ssshhhhhh! Top secret!',
-  saveUninitialized: true,
-  resave: true,
-  db: knex
-}))
+// app.use(session({ // for logins
+//   secret: 'ssshhhhhh! Top secret!',
+//   saveUninitialized: true,
+//   resave: true,
+//   db: knex
+// }))
 
 // ----- logins ----- //
 
-app.get('/sign-in', function (req, res) {
-  res.render('sign-in')
-})
+// app.get('/sign-in', function (req, res) {
+//   res.render('sign-in')
+// })
 
-app.post('/sign-in', function (req, res) {
-  req.session.userId = 7
-  res.redirect('/')
-})
+// app.post('/sign-in', function (req, res) {
+//   req.session.userId = 7
+//   res.redirect('/')
+// })
 
-app.get('/sign-up', function (req, res) {
-  res.render('sign-up')
-})
+// app.get('/sign-up', function (req, res) {
+//   res.render('sign-up')
+// })
 
-app.post('/sign-up', function (req, res) {
-  req.session.userId = 8
-  res.redirect('/')
-})
+// app.post('/sign-up', function (req, res) {
+//   req.session.userId = 8
+//   res.redirect('/')
+// })
 
-// Logout endpoint
-app.get('/sign-out', function (req, res) {
-  // Add logout code here
-  req.session.destroy()
-  res.redirect('/sign-in')
-})
+// // Logout endpoint
+// app.get('/sign-out', function (req, res) {
+//   // Add logout code here
+//   req.session.destroy()
+//   res.redirect('/sign-in')
+// })
 
 // app.get('/', function (req, res) {
 //   res.render('index', {id: req.session.userId})
@@ -161,10 +161,16 @@ app.post('/ping', function (req, res, next) {
 // console.log("Req.body is of type: ", (typeof req.body))
 })
 
+app.get('/test', function (req, res) {
+  console.log('GET received on /test')
+  res.render('test', { message: 'this is the test'})
+})
+
 // ----- test of handlebars templating ----- //
 
 app.get('/hbstest', function (req, res) {
-  res.render('home', { name: 'Bob'})
+  console.log('GET received on /hbstest ')
+  res.render('home', { message: 'this is the Handlebars version'})
 })
 // ----- set up port on server ----- //
 

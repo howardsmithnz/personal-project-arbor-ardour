@@ -1,7 +1,15 @@
 <div>
-Hi from home.hbs
-
-Hello {{ name }}
-
-{{> sign-in }}
+  <div class="row">
+    <div class="twelve columns">
+      <img id="rimu_fruit_photo" src="images/rimu_fruit.jpg" alt="A photo of some Rimu fruit" style="display: block; margin: auto; width: 100%">
+    </div>
+  </div>
+  {{ message }}
+  <div class="row">
+    <button class="button-primary u-full-width" type="button" onclick="$.get('/test', function(){console.log('button pushed for /test route')})">ADD</button>
+  </div>
+  <div class="row">
+    <a class="button button-primary u-full-width" href="/test">SHOW</a>
+  </div>
 </div>
+

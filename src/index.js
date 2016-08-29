@@ -2,15 +2,15 @@
 
 $(document).ready(function () {
   // get a list of trees and display it
-  $.get('/trees', function (data, status) {
-    var arr = data.trees
-    var trees_found = ''
-    for (var i = 0; i < arr.length; i++) {
-      // trees_found = trees_found + data.trees[i]
-      trees_found = trees_found + '<li>TREE: ' + data.trees[i].tree_name + ' AT: ' + data.trees[i].place + ' LAT: ' + data.trees[i].lat + ' LONG: ' + data.trees[i].longd + ' NOTES: ' + data.trees[i].notes + '</li>'
-    }
-    $('#tree_list ').html(trees_found)
-  })
+  // $.get('/trees', function (data, status) {
+  //   var arr = data.trees
+  //   var trees_found = ''
+  //   for (var i = 0; i < arr.length; i++) {
+  //     // trees_found = trees_found + data.trees[i]
+  //     trees_found = trees_found + '<li>TREE: ' + data.trees[i].tree_name + ' AT: ' + data.trees[i].place + ' LAT: ' + data.trees[i].lat + ' LONG: ' + data.trees[i].longd + ' NOTES: ' + data.trees[i].notes + '</li>'
+  //   }
+  //   $('#tree_list ').html(trees_found)
+  // })
 
   // send the data when the button is clicked
   $('#add_button').click(function (e) {
