@@ -1,3 +1,6 @@
+var fs = require('fs')
+var https = require('https')
+
 var express = require('express')
 var bodyParser = require('body-parser')
 var exphbs = require('express-handlebars') // handlebars
@@ -181,10 +184,25 @@ app.get('/show', function (req, res) {
   res.render('show', { message: 'this is the show'})
 })
 
+app.get('/https_test', function (req, res) {
+  console.log('GET recived on /https_test')
+  res.header('Content-type', 'text/html')
+  return res.end('<h1>Hello, Secure World!</h1>')
+})
+
 // ----- set up port on server ----- //
 
-app.listen(3000, function () {
-  console.log('abarada app listening on port 3000!')
+// app.listen(3000, function () {
+//   console.log('abarada app listening on port 3000!')
+// })
+
+// ----- HTTPS server ----- //
+
+https.createServer({
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+}, app).listen(55555, function () {
+  console.log('SECURE abarada app listening on port 55555')
 })
 
 // ----- bogus function for testing ----- //
