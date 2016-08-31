@@ -19,6 +19,8 @@
                 <label for="place">Place:</label>
                 <input type="text" id="place" />
             </div>
+            <div id="testLat"></div>
+            <div id="testLongd"></div>
             <div>
                 <label for="lat">Lat:</label>
                 <input type="text" id="lat" />
@@ -43,12 +45,13 @@
   window.onload = function() {
     console.log("window has loaded")
     var startPos;
+    document.getElementById('testLat').innerHTML = "THIS IS TEST LAT"
     var geoSuccess = function(position) {
       console.log("callback starting")
       startPos = position;
       console.log("startPos is: ", startPos)
-      document.getElementById('lat').innerHTML = startPos.coords.latitude;
-      document.getElementById('longd').innerHTML = startPos.coords.longitude;
+      document.getElementById('testLat').innerHTML = startPos.coords.latitude;
+      document.getElementById('testLongd').innerHTML = startPos.coords.longitude;
     };
     navigator.geolocation.getCurrentPosition(geoSuccess);
     console.log("finish")
