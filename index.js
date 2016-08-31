@@ -134,7 +134,7 @@ app.get('/trees/:id', function (req, res) {
   })
 })
 
-app.post('/', function (req, res) {
+app.post('/', function (req, res) { // this route should be changed to "POST /trees"
   console.log('POST received on /')
   // create new tree in DB
   console.log('req.body is: ', req.body)
