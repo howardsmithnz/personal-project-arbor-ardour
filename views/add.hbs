@@ -39,7 +39,21 @@
       </section>
     </div>
   </div>
-
+  <script>
+  window.onload = function() {
+    console.log("window has loaded")
+    var startPos;
+    var geoSuccess = function(position) {
+      console.log("callback starting")
+      startPos = position;
+      console.log("startPos is: ", startPos)
+      document.getElementById('lat').innerHTML = startPos.coords.latitude;
+      document.getElementById('longd').innerHTML = startPos.coords.longitude;
+    };
+    navigator.geolocation.getCurrentPosition(geoSuccess);
+    console.log("finish")
+  };
+  </script>
   this is add.hbs
   {{ message }}
 </div>
