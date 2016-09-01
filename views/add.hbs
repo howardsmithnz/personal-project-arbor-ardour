@@ -10,7 +10,7 @@
                   <option value="Kahikatea">Kahikatea</option>
                   <option value="Matai">Matai</option>
                   <option value="Miro">Miro</option>
-                  <option value="Rimu">Rimu</option>
+                  <option value="Rimu" selected>Rimu</option>
                   <option value="Totara">Totara</option>
                 </select>
                 {{!-- <input type="text" id="tree_name" /> --}}
@@ -43,18 +43,18 @@
   </div>
   <script>
   window.onload = function() {
-    console.log("window has loaded")
+    // console.log("window has loaded")
     var startPos;
     document.getElementById('testLat').innerHTML = "THIS IS TEST LAT"
     var geoSuccess = function(position) {
-      console.log("callback starting")
+      // console.log("callback starting")
       startPos = position;
-      console.log("startPos is: ", startPos)
-      document.getElementById('testLat').innerHTML = startPos.coords.latitude;
-      document.getElementById('testLongd').innerHTML = startPos.coords.longitude;
+      // console.log("startPos is: ", startPos)
+      document.getElementById('lat').value = startPos.coords.latitude;
+      document.getElementById('longd').value = startPos.coords.longitude;
     };
     navigator.geolocation.getCurrentPosition(geoSuccess);
-    console.log("finish")
+    // console.log("finish")
   };
   </script>
   this is add.hbs
