@@ -2,7 +2,6 @@
   <div class="row">
     <div class="twelve columns" id="form">
       <section>
-        {{!-- <h3>Enter new tree here:</h3> --}}
         <form>
             <div>
                 <label for="tree_name">Tree Name:</label>
@@ -13,14 +12,11 @@
                   <option value="Rimu" selected>Rimu</option>
                   <option value="Totara">Totara</option>
                 </select>
-                {{!-- <input type="text" id="tree_name" /> --}}
             </div>
-            <div>
+            {{!-- <div>
                 <label for="place">Place:</label>
                 <input type="text" id="place" />
-            </div>
-            <div id="testLat"></div>
-            <div id="testLongd"></div>
+            </div> --}}
             <div>
                 <label for="lat">Lat:</label>
                 <input type="text" id="lat" />
@@ -33,28 +29,23 @@
                 <label for="notes">Notes:</label>
                 <textarea class="u-full-width" id="notes"></textarea>
             </div>
-            <div class="button">
-                <button id="add_button" >Add this tree</button>
+            <div>
+                <a class="button button-primary u-full-width" id="add_button">ADD THIS</a>
+                {{!-- <button id="add_button" >Add this tree</button> --}}
             </div>
         </form>
-        
       </section>
     </div>
   </div>
   <script>
   window.onload = function() {
-    // console.log("window has loaded")
     var startPos;
-    document.getElementById('testLat').innerHTML = "THIS IS TEST LAT"
     var geoSuccess = function(position) {
-      // console.log("callback starting")
       startPos = position;
-      // console.log("startPos is: ", startPos)
       document.getElementById('lat').value = startPos.coords.latitude;
       document.getElementById('longd').value = startPos.coords.longitude;
     };
     navigator.geolocation.getCurrentPosition(geoSuccess);
-    // console.log("finish")
   };
   </script>
   this is add.hbs

@@ -32,7 +32,18 @@ $(document).ready(function () {
     $.post('/', dataToPost, function (data, status) {
       console.log('Posted stuff')
       console.log('data', data)
-      $('ul').append('<li>TREE: ' + tree_name + ' AT: ' + place + ' LAT: ' + lat + ' LONG: ' + longd + ' NOTES: ' + notes + '</li>')
+    // $.get('/', function (data, status) {
+    //   console.log('Redirected from POST back to GET/')
+    //   console.log('Data: ', data)
+    //   console.log('Status: ' , status)
+    // })
+    // $('ul').append('<li>TREE: ' + tree_name + ' AT: ' + place + ' LAT: ' + lat + ' LONG: ' + longd + ' NOTES: ' + notes + '</li>')
+    })
+
+    $.get('/', function (data, status) {
+      console.log('Redirected from POST back to GET/')
+      console.log('Data: ', data)
+      console.log('Status: ' , status)
     })
   })
 })
