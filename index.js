@@ -1,10 +1,8 @@
 var fs = require('fs')
 var https = require('https')
-
 var express = require('express')
 var bodyParser = require('body-parser')
 var exphbs = require('express-handlebars') // handlebars
-// var session = require('express-session') // for logins
 var sqlite = require('sqlite3')
 
 var app = express()
@@ -21,28 +19,6 @@ var knex = require('knex')({
 
 var db = require('./db.js')(knex)
 
-// ----- bogus data for testing ----- //
-
-// var fakeJSONTreeList = { "trees": ["<li>TREE: Kanuka AT: 765 Farm Rd. </li>", "<li>TREE: Kauri AT: 234 Beach Rd. </li>", "<li>TREE: Puriri AT: 23 Raglan Rd. </li>"]}
-// var fakeJSONTreeList = { 'trees': [
-//     {
-//       tree_name: 'rewarewa',
-//       place: 'kelburn',
-//       lat: -42.3,
-//       longd: 172.2,
-//       notes: 'A very tall tree'
-//     }
-//   ]
-// }
-
-// var dataToPost = {
-//       tree_name: tree_name,
-//       place: place,
-//       lat: lat,
-//       longd: longd,
-//       notes: notes
-//     }
-
 // ----- set up middleware ----- //
 
 // ----- handlebars ----- //
@@ -53,59 +29,35 @@ app.engine('.hbs', exphbs({
 
 app.set('view engine', '.hbs')
 
+// ----- body parser to read the content of a request body ----- //
 app.use(bodyParser.json()) // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
-
+// ----- timestamp ----- //
 app.use(function (req, res, next) {
   console.log('Time: %d', Date.now())
   next()
 })
-
+// ----- set up static files ----- //
 app.use(express.static('public'))
-
-// app.use(session({ // for logins
-//   secret: 'ssshhhhhh! Top secret!',
-//   saveUninitialized: true,
-//   resave: true,
-//   db: knex
-// }))
-
-// ----- logins ----- //
-
-// app.get('/sign-in', function (req, res) {
-//   res.render('sign-in')
-// })
-
-// app.post('/sign-in', function (req, res) {
-//   req.session.userId = 7
-//   res.redirect('/')
-// })
-
-// app.get('/sign-up', function (req, res) {
-//   res.render('sign-up')
-// })
-
-// app.post('/sign-up', function (req, res) {
-//   req.session.userId = 8
-//   res.redirect('/')
-// })
-
-// // Logout endpoint
-// app.get('/sign-out', function (req, res) {
-//   // Add logout code here
-//   req.session.destroy()
-//   res.redirect('/sign-in')
-// })
-
-// app.get('/', function (req, res) {
-//   res.render('index', {id: req.session.userId})
-// })
 
 // ----- routes ----- //
 
-// app.get('/', function (req, res) {
-//   console.log('GET for / received')
-// })
+app.get('/', function (req, res) {
+  console.log('GET received on / ')
+  console.log('will render handlebars home.hbs')
+  res.render('home', { message: 'this is the Handlebars version'})
+})
+
+app.get('/add', function (req, res) {
+  console.log('GET received on /add')
+  console.log('will render handlebars add.hbs')
+  res.render('add', { message: 'this is the add partial'})
+})
+app.get('/show', function (req, res) {
+  console.log('GET received on /show')
+  console.log('will render handlebars show.hbs')
+  res.render('show', { message: 'this is the show partial'})
+})
 
 app.get('/trees', function (req, res) {
   // check if it has a query string, if so then...
@@ -128,7 +80,7 @@ app.get('/trees', function (req, res) {
   }
 })
 
-app.get('/trees/:id', function (req, res) {
+app.get('/trees/:id', function (req, res) { // not currently used
   console.log('GET received on /trees/:id')
   // use knex to do 'SELECT * FROM trees WHERE id=3' to sqlite DB
   db.findOne('trees', { id: req.params.id }, function (err, tree) {
@@ -137,8 +89,8 @@ app.get('/trees/:id', function (req, res) {
   })
 })
 
-app.post('/', function (req, res) { // this route should be changed to "POST /trees"
-  console.log('POST received on /')
+app.post('/tree', function (req, res) {
+  console.log('POST received on /tree')
   // create new tree in DB
   console.log('req.body is: ', req.body)
   // use knex to insert specific tree to DB and assign own unique tree ID
@@ -146,20 +98,17 @@ app.post('/', function (req, res) { // this route should be changed to "POST /tr
     console.log('err is: ', err)
     console.log('tree added to DB: ', tree)
     res.json({ 'trees': [ tree ]})
+  // res.redirect('/')
   })
+// res.send('I just added a tree')
 })
 
-// app.get('/faketrees', function (req, res) {
-//   console.log('GET for /trees received')
-//   // res.send("GET for /trees is OK")
-//   res.json(fakeJSONTreeList)
-// })
+// ----- testing routes ----- //
 
 app.post('/ping', function (req, res, next) {
   console.log('POST for /ping received')
   console.log('req.body is: ', req.body)
   res.json(req.body)
-
 // console.log("req.query is: ",req.query)
 // console.log("Req.body is of type: ", (typeof req.body))
 })
@@ -167,21 +116,6 @@ app.post('/ping', function (req, res, next) {
 app.get('/test', function (req, res) {
   console.log('GET received on /test')
   res.render('test', { message: 'this is the test'})
-})
-
-app.get('/', function (req, res) {
-  console.log('GET received on / ')
-  console.log('will render handlebars home')
-  res.render('home', { message: 'this is the Handlebars version'})
-})
-
-app.get('/add', function (req, res) {
-  console.log('GET received on /add')
-  res.render('add', { message: 'this is the add'})
-})
-app.get('/show', function (req, res) {
-  console.log('GET received on /show')
-  res.render('show', { message: 'this is the show'})
 })
 
 app.get('/https_test', function (req, res) {
@@ -215,5 +149,4 @@ function sayBoo () {
 
 module.exports = {
   sayBoo: sayBoo,
-// hbstest: hbstest
 }
