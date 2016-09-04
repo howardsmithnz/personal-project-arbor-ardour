@@ -2,7 +2,7 @@
   <div class="row">
     <div class="twelve columns" id="form">
       <section>
-        <form>
+        <form action="/tree" method="POST">
             <div>
                 <label for="tree_name">Tree Name:</label>
                 <select class="u-full-width" id="tree_name">
@@ -31,13 +31,15 @@
             </div>
             <div>
                 <a class="button button-primary u-full-width" id="add_button">ADD THIS</a>
+                <input type="submit" value="Submit">
             </div>
         </form>
       </section>
     </div>
   </div>
   <script>
-  window.onload = function() {
+  $(window).load(function() {
+    alert("I'm the jQuery version")
     var startPos;
     var geoSuccess = function(position) {
       startPos = position;
@@ -45,7 +47,16 @@
       document.getElementById('longd').value = startPos.coords.longitude;
     };
     navigator.geolocation.getCurrentPosition(geoSuccess);
-  };
+  })
+  // window.onload = function() {
+  //   var startPos;
+  //   var geoSuccess = function(position) {
+  //     startPos = position;
+  //     document.getElementById('lat').value = startPos.coords.latitude;
+  //     document.getElementById('longd').value = startPos.coords.longitude;
+  //   };
+  //   navigator.geolocation.getCurrentPosition(geoSuccess);
+  // };
   </script>
   this is add.hbs
   {{ message }}

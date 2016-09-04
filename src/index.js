@@ -1,6 +1,43 @@
 // event handlers for client
 
 $(document).ready(function () {
+  // send the data when the button is clicked
+  // $('#add_button').click(function (e) {
+  //   // e.preventDefault()
+  //   var tree_name = $('#tree_name').val()
+  //   var lat = $('#lat').val()
+  //   var longd = $('#longd').val()
+  //   var place = $('#place').val()
+  //   var notes = $('#notes').val()
+
+  //   var dataToPost = {
+  //     tree_name: tree_name,
+  //     place: place,
+  //     lat: lat,
+  //     longd: longd,
+  //     notes: notes
+  //   }
+
+  //   $.post('/tree', dataToPost, function (data, status) {
+  //     console.log('POST sent to /tree')
+  //     console.log('dataToPost was: ', dataToPost)
+  //     console.log('status was: ', status)
+  //     console.log('data was: ', data) // this is printing out an HTML page!!!
+  //     // $.get('/', function (data, status) {
+  //     //   console.log('Redirected from POST back to GET/')
+  //     //   console.log('Data: ', data)
+  //     //   console.log('Status: ' , status)
+  //     // })
+  //     $('ul').append('<li>TREE: ' + tree_name + ' AT: ' + place + ' LAT: ' + lat + ' LONG: ' + longd + ' NOTES: ' + notes + '</li>')
+  //   })
+
+  // $.get('/', function (data, status) {
+  //   console.log('Redirected from POST back to GET/')
+  //   console.log('Data: ', data)
+  //   console.log('Status: ' , status)
+  // })
+  // })
+
   // get a list of trees and display it
   $.get('/trees', function (data, status) {
     var arr = data.trees
@@ -10,41 +47,6 @@ $(document).ready(function () {
       trees_found = trees_found + '<li>TREE: ' + data.trees[i].tree_name + ' AT: ' + data.trees[i].place + ' LAT: ' + data.trees[i].lat + ' LONG: ' + data.trees[i].longd + ' NOTES: ' + data.trees[i].notes + '</li>'
     }
     $('#tree_list ').html(trees_found)
-  })
-
-  // send the data when the button is clicked
-  $('#add_button').click(function (e) {
-    e.preventDefault()
-    var tree_name = $('#tree_name').val()
-    var lat = $('#lat').val()
-    var longd = $('#longd').val()
-    var place = $('#place').val()
-    var notes = $('#notes').val()
-
-    var dataToPost = {
-      tree_name: tree_name,
-      place: place,
-      lat: lat,
-      longd: longd,
-      notes: notes
-    }
-
-    $.post('/tree', dataToPost, function (data, status) {
-      console.log('POST sent to /tree')
-      console.log('data was: ', data)
-      // $.get('/', function (data, status) {
-      //   console.log('Redirected from POST back to GET/')
-      //   console.log('Data: ', data)
-      //   console.log('Status: ' , status)
-      // })
-      $('ul').append('<li>TREE: ' + tree_name + ' AT: ' + place + ' LAT: ' + lat + ' LONG: ' + longd + ' NOTES: ' + notes + '</li>')
-    })
-
-  // $.get('/', function (data, status) {
-  //   console.log('Redirected from POST back to GET/')
-  //   console.log('Data: ', data)
-  //   console.log('Status: ' , status)
-  // })
   })
 })
 

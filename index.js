@@ -22,9 +22,15 @@ var db = require('./db.js')(knex)
 // ----- set up middleware ----- //
 
 // ----- handlebars ----- //
+
 app.engine('.hbs', exphbs({
   defaultLayout: 'main',
-  extname: '.hbs'
+  extname: '.hbs',
+  helpers: {
+    list: function () {
+      return 'LIST'
+    }
+  }
 }))
 
 app.set('view engine', '.hbs')
@@ -97,9 +103,10 @@ app.post('/tree', function (req, res) {
   db.add('trees', req.body, function (err, tree) {
     console.log('err is: ', err)
     console.log('tree added to DB: ', tree)
-    res.json({ 'trees': [ tree ]})
-  // res.redirect('/')
+    // res.json({ 'trees': [ tree ]})
+    res.redirect('back')
   })
+
 // res.send('I just added a tree')
 })
 
