@@ -37,7 +37,8 @@ app.use(bodyParser.json()) // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })) // support encoded bodies
 // ----- timestamp ----- //
 app.use(function (req, res, next) {
-  console.log('Time: %d', Date.now())
+  var d = new Date()
+  console.log('server-index.js> Time: %s', d)
   next()
 })
 // ----- set up static files ----- //
