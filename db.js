@@ -27,6 +27,7 @@ module.exports = function (knex) {
       valueString = valueString.join('", "')
 
       knex(table).insert(params).then(function (resp) {
+        console.log('db.js> resp[0] from add func is: ', resp[0])
         callback(null, resp[0])
       })
     }

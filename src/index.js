@@ -20,22 +20,21 @@ $(document).ready(function () {
 
     $.post('/tree', dataToPost, function (data, status) {
       console.log('POST sent to /tree')
-      console.log('dataToPost was: ', dataToPost)
-      console.log('status was: ', status)
-      console.log('data was: ', data) // this is printing out an HTML page!!!
+      console.log('POST/tree dataToPost was: ', dataToPost)
+      console.log('POST/tree status was: ', status)
+      console.log('POST/tree data was: ', data) // this is printing out an HTML page!!!
       // $.get('/', function (data, status) {
       //   console.log('Redirected from POST back to GET/')
       //   console.log('Data: ', data)
       //   console.log('Status: ' , status)
       // })
       $('ul').append('<li>TREE: ' + tree_name + ' AT: ' + place + ' LAT: ' + lat + ' LONG: ' + longd + ' NOTES: ' + notes + '</li>')
+      $.get('/', function (data, status) {
+        console.log('Redirected from POST back to GET/')
+        console.log('GET/ Data: ', data)
+        console.log('GET/ Status: ' , status)
+      })
     })
-
-  // $.get('/', function (data, status) {
-  //   console.log('Redirected from POST back to GET/')
-  //   console.log('Data: ', data)
-  //   console.log('Status: ' , status)
-  // })
   })
 
   // get a list of trees and display it
