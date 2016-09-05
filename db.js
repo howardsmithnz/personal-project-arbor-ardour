@@ -11,7 +11,7 @@ module.exports = function (knex) {
     // SELECT * FROM table WHERE ...
     findOne: function (table, params, callback) {
       var key = Object.keys(params)[0]
-      console.log(key, params[key])
+      console.log('db.js> key: params[key]', key, params[key])
       knex(table).where(key, params[key]).then(function (resp) {
         callback(null, resp[0])
       })

@@ -19,20 +19,20 @@ $(document).ready(function () {
     }
 
     $.post('/tree', dataToPost, function (data, status) {
-      console.log('POST sent to /tree')
-      console.log('POST/tree dataToPost was: ', dataToPost)
-      console.log('POST/tree status was: ', status)
-      console.log('POST/tree data was: ', data) // this is printing out an HTML page!!!
+      console.log('client-index.js> POST sent to /tree')
+      console.log('client-index.js> POST/tree dataToPost was: ', dataToPost)
+      console.log('client-index.js> POST/tree status was: ', status)
+      console.log('client-index.js> POST/tree data was: ', data) // this is printing out an HTML page!!!
       // $.get('/', function (data, status) {
-      //   console.log('Redirected from POST back to GET/')
-      //   console.log('Data: ', data)
-      //   console.log('Status: ' , status)
+      //   console.log('client-index.js> Redirected from POST back to GET/')
+      //   console.log('client-index.js> Data: ', data)
+      //   console.log('client-index.js> Status: ' , status)
       // })
       $('ul').append('<li>TREE: ' + tree_name + ' AT: ' + place + ' LAT: ' + lat + ' LONG: ' + longd + ' NOTES: ' + notes + '</li>')
       $.get('/', function (data, status) {
-        console.log('Redirected from POST back to GET/')
-        console.log('GET/ Data: ', data)
-        console.log('GET/ Status: ' , status)
+        console.log('client-index.js> Redirected from POST back to GET/')
+        console.log('client-index.js> GET/ Data: ', data)
+        console.log('client-index.js> GET/ Status: ' , status)
       })
     })
   })
@@ -73,9 +73,9 @@ google.maps.event.addDomListener(window, 'load', initialize)
 
 // check for Geolocation support
 if (navigator.geolocation) {
-  console.log('Geolocation is supported!')
+  console.log('client-index.js> Geolocation is supported!')
 } else {
-  console.log('Geolocation is not supported for this Browser/OS version yet.')
+  console.log('client-index.js> Geolocation is not supported for this Browser/OS version yet.')
 }
 
-console.log('YES! Browserified index.js has loaded')
+console.log('client-index.js> YES! Browserified index.js has loaded')
