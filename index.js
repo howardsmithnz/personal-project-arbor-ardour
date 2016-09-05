@@ -80,7 +80,7 @@ app.get('/trees', function (req, res) {
     console.log('req.query is: ', req.query)
     // use knex to do 'SELECT * FROM trees' to sqlite DB
     db.getAll('trees', function (err, trees) {
-      console.log('tree', trees)
+      console.log('trees is: ', trees)
       res.json({ 'trees': trees })
     })
   }
@@ -103,10 +103,9 @@ app.post('/tree', function (req, res) {
   db.add('trees', req.body, function (err, tree) {
     console.log('err is: ', err)
     console.log('tree added to DB: ', tree)
-    // res.json({ 'trees': [ tree ]})
-    res.redirect('back')
+  // res.json({ 'trees': [ tree ]})
   })
-
+  res.redirect('back')
 // res.send('I just added a tree')
 })
 
