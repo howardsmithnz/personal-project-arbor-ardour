@@ -88,7 +88,7 @@ app.get('/trees/:id', function (req, res) { // not currently used
   console.log('server-index.js> GET received on /trees/:id')
   // use knex to do 'SELECT * FROM trees WHERE id=3' to sqlite DB
   db.findOne('trees', { id: req.params.id }, function (err, tree) {
-    console.log(tree)
+    console.log('server-index.js> GET/trees/:id tree is: ', tree)
     res.json({ 'trees': [ tree ]})
   })
 })
