@@ -43,6 +43,11 @@ app.use(function (req, res, next) {
 })
 // ----- set up static files ----- //
 app.use(express.static('public'))
+// ----- error handling ----- //
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+})
 
 // ----- routes ----- //
 

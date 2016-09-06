@@ -15,5 +15,5 @@ test('simple test', function (t) {
 })
 
 test.onFinish(function () {
-  console.log('All done')
+  console.log('test-index.js> All done')
 })
