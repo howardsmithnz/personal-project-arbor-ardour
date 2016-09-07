@@ -98,10 +98,12 @@ app.get('/trees/:id', function (req, res) { // not currently used
   })
 })
 
-app.post('/tree', function (req, res) { // not redirecting!!
+app.post('/tree', function (req, res) { // is redirecting but no data to DB!!
   console.log('server-index.js> POST received on /tree')
   // create new tree in DB
+  console.log('server-index.js> req is: ', req)
   console.log('server-index.js> req.body is: ', req.body)
+  console.log('server-index.js> req.query is: ', req.query)
   // use knex to insert specific tree to DB and assign own unique tree ID
   db.add('trees', req.body, function (err, tree) {
     console.log('server-index.js> err is: ', err)
