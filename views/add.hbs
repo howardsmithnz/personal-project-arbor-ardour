@@ -2,7 +2,7 @@
   <div class="row">
     <div class="twelve columns" id="form">
       <section>
-        <form action="/tree" method="POST">
+        <form id="tree_form" action="/tree" method="POST">
             <div>
                 <label for="tree_name">Tree Name:</label>
                 <select class="u-full-width" id="tree_name">
@@ -13,10 +13,10 @@
                   <option value="Totara">Totara</option>
                 </select>
             </div>
-            {{!-- <div>
+            <div>
                 <label for="place">Place:</label>
                 <input type="text" id="place" />
-            </div> --}}
+            </div>
             <div>
                 <label for="lat">Lat:</label>
                 <input type="text" id="lat" />
