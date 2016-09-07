@@ -108,7 +108,7 @@ app.post('/tree', function (req, res) { // not redirecting!!
     console.log('server-index.js> tree added to DB: ', tree)
   // res.json({ 'trees': [ tree ]})
   })
-  res.redirect('back')
+  res.redirect('/')
 // res.send('I just added a tree')
 })
 
