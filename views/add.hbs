@@ -5,7 +5,7 @@
         <form id="tree_form" action="/tree" method="POST">
             <div>
                 <label for="tree_name">Tree Name:</label>
-                <select class="u-full-width" id="tree_name">
+                <select class="u-full-width" id="tree_name" name="tree_name">
                   <option value="Kahikatea">Kahikatea</option>
                   <option value="Matai">Matai</option>
                   <option value="Miro">Miro</option>
@@ -15,19 +15,19 @@
             </div>
             <div>
                 <label for="place">Place:</label>
-                <input type="text" id="place" />
+                <input type="text" id="place" name="place" />
             </div>
             <div>
                 <label for="lat">Lat:</label>
-                <input type="text" id="lat" />
+                <input type="text" id="lat" name="lat" />
             </div>
             <div>
                 <label for="longd">Long:</label>
-                <input type="text" id="longd" />
+                <input type="text" id="longd" name="longd" />
             </div>
             <div>
                 <label for="notes">Notes:</label>
-                <textarea class="u-full-width" id="notes"></textarea>
+                <textarea class="u-full-width" id="notes" name="notes"></textarea>
             </div>
             <div>
                 {{!-- <a class="button button-primary u-full-width" id="add_button">ADD THIS</a> --}}
