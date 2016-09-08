@@ -1,43 +1,41 @@
 <div>
-  {{!-- <div class="row"> --}}
-    <div class="twelve columns" id="form">
-      <section>
-        <form id="tree_form" action="/tree" method="post">
-            <div class="row">
-                <label for="tree_name">Tree Name:</label>
-                <select class="u-full-width" id="tree_name" name="tree_name">
-                  <option value="Kahikatea">Kahikatea</option>
-                  <option value="Matai">Matai</option>
-                  <option value="Miro">Miro</option>
-                  <option value="Rimu" selected>Rimu</option>
-                  <option value="Totara">Totara</option>
-                </select>
+  <div id="form">
+    <section>
+      <form id="tree_form" action="/tree" method="post">
+          <div class="row">
+              <label for="tree_name">Tree Name:</label>
+              <select class="u-full-width" id="tree_name" name="tree_name">
+                <option value="Kahikatea">Kahikatea</option>
+                <option value="Matai">Matai</option>
+                <option value="Miro">Miro</option>
+                <option value="Rimu" selected>Rimu</option>
+                <option value="Totara">Totara</option>
+              </select>
+          </div>
+          <div class="row">
+              <label for="place">Place:</label>
+              <input type="text" class="u-full-width" id="place" name="place" />
+          </div>
+          <div class="row">
+            <div class="u-full-width">
+                <label for="lat">Lat:</label>
+                <input type="text" id="lat" name="lat" />
             </div>
-            <div class="row">
-                <label for="place">Place:</label>
-                <input type="text" class="u-full-width" id="place" name="place" />
+            <div class="u-full-width">
+                <label for="longd">Long:</label>
+                <input type="text" id="longd" name="longd" />
             </div>
-            <div class="row u-full-width">
-              <div>
-                  <label for="lat">Lat:</label>
-                  <input type="text" id="lat" name="lat" />
-              </div>
-              <div>
-                  <label for="longd">Long:</label>
-                  <input type="text" id="longd" name="longd" />
-              </div>
-            </div>
-            <div class="row">
-                <label for="notes">Notes:</label>
-                <textarea class="u-full-width" id="notes" name="notes"></textarea>
-            </div>
-            <div class="row">
-                <input type="submit" class="button-primary u-full-width" value="ADD THIS">
-            </div>
-        </form>
-      </section>
-    </div>
-  {{!-- </div> --}}
+          </div>
+          <div class="row">
+              <label for="notes">Notes:</label>
+              <textarea class="u-full-width" id="notes" name="notes"></textarea>
+          </div>
+          <div class="row">
+              <input type="submit" class="button-primary u-full-width" value="ADD THIS">
+          </div>
+      </form>
+    </section>
+  </div>
   <script>
   $(window).load(function() {
     // alert("I'm the jQuery version")
