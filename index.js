@@ -55,7 +55,6 @@ app.get('/', function (req, res) {
   console.log('server-index.js> GET received on / ')
   console.log('server-index.js> will render handlebars home.hbs')
   console.log('server-index.js> req.query is: ', req.query)
-  console.log('server-index.js> req.params is: ', req.params)
   var message = 'Please make your choice below'
   if (req.query.message) {
     message = req.query.message
@@ -67,12 +66,12 @@ app.get('/', function (req, res) {
 app.get('/add', function (req, res) {
   console.log('server-index.js> GET received on /add')
   console.log('server-index.js> will render handlebars add.hbs')
-  res.render('add', { message: 'this is the add partial'})
+  res.render('add', { message: 'Please choose a type of tree and add any notes that you wish'})
 })
 app.get('/show', function (req, res) {
   console.log('server-index.js> GET received on /show')
   console.log('server-index.js> will render handlebars show.hbs')
-  res.render('show', { message: 'this is the show partial'})
+  res.render('show', { message: 'I found these trees...'})
 })
 
 app.get('/trees', function (req, res) {
