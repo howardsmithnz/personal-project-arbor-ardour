@@ -54,7 +54,7 @@ app.use(function (err, req, res, next) {
 app.get('/', function (req, res) {
   console.log('server-index.js> GET received on / ')
   console.log('server-index.js> will render handlebars home.hbs')
-  res.render('home', { message: 'this is the Handlebars version'})
+  res.render('home', { message: 'Please make your choice below'})
 })
 
 app.get('/add', function (req, res) {
@@ -98,7 +98,7 @@ app.get('/trees/:id', function (req, res) { // not currently used
   })
 })
 
-app.post('/tree', function (req, res) { // is redirecting but no data to DB!!
+app.post('/tree', function (req, res) {
   console.log('server-index.js> POST received on /tree')
   // create new tree in DB
   console.log('server-index.js> req is: ', req)
@@ -110,8 +110,8 @@ app.post('/tree', function (req, res) { // is redirecting but no data to DB!!
     console.log('server-index.js> tree added to DB: ', tree)
   // res.json({ 'trees': [ tree ]})
   })
-  res.redirect('/')
-// res.send('I just added a tree')
+  // res.redirect('/')
+  res.render('/', function () { console.log('Your tree has been added.')})
 })
 
 // ----- testing routes ----- //
