@@ -54,7 +54,14 @@ app.use(function (err, req, res, next) {
 app.get('/', function (req, res) {
   console.log('server-index.js> GET received on / ')
   console.log('server-index.js> will render handlebars home.hbs')
-  res.render('home', { message: 'Please make your choice below'})
+  console.log('server-index.js> req.query is: ', req.query)
+  console.log('server-index.js> req.params is: ', req.params)
+  var message = 'Please make your choice below'
+  if (req.query.message) {
+    message = req.query.message
+    console.log('server-index.js> req.query.message is: ', req.query.message)
+  }
+  res.render('home', { message: message})
 })
 
 app.get('/add', function (req, res) {
@@ -110,8 +117,8 @@ app.post('/tree', function (req, res) {
     console.log('server-index.js> tree added to DB: ', tree)
   // res.json({ 'trees': [ tree ]})
   })
-  // res.redirect('/')
-  res.render('/', function () { console.log('Your tree has been added.')})
+  res.redirect('/?message=Your tree was added')
+// res.render('/', function () { console.log('Your tree has been added.')})
 })
 
 // ----- testing routes ----- //
