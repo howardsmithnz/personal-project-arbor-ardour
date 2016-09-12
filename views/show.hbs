@@ -1,23 +1,18 @@
 <div>
   <div class="row">
     <div class="twelve columns">
-      <div id="googleMap" style="width:300px;height:300px;"></div>
+      <div id="googleMap" style="width:350px;height:300px;"></div>
     </div>
   </div>
   <div class="row">
     <div class="twelve columns">
-      <h5>Handlebars list follows:</h5>
-      {{#list trees}}{{tree_name}} {{place}}{{/list}}
+      {{ message }}
+      {{!-- <h5>Handlebars list follows:</h5>
+      {{#list trees}}{{tree_name}} {{place}}{{/list}} --}}
       <h3>Trees found:</h3>
       <ul id="tree_list">
       </ul>
     </div>
   </div>
-  <script>
-
-  </script>
   <script src="./bundle.js"></script>
-
-  this is show.hbs
-  {{ message }}
 </div>
