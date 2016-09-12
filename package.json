@@ -7,12 +7,14 @@
     "test": "node ./test/index.js | tap-spec",
     "watch-client": "watchify ./src/index.js -o ./public/bundle.js -dv",
     "bundle": "browserify ./src/index.js -o ./public/bundle.js -v",
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "nodemon": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.0",
+    "browserify": "^13.0.0",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
@@ -31,6 +33,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/heroku/node-js-getting-started"
+    "url": "https://github.com/howardsmithnz/personal-project-arbor-ardour"
   }
 }
