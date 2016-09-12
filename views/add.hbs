@@ -43,7 +43,15 @@
         document.getElementById('lat').value = startPos.coords.latitude;
         document.getElementById('longd').value = startPos.coords.longitude;
       };
-      navigator.geolocation.getCurrentPosition(geoSuccess);
+      var geoError = function(position) {
+        console.log('Error occurred. Error code: ' + error.code);
+        // error.code can be:
+        //   0: unknown error
+        //   1: permission denied
+        //   2: position unavailable (error response from location provider)
+        //   3: timed out
+      };
+      navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
     })
   </script>
 </div>
