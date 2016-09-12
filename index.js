@@ -1,8 +1,8 @@
 var fs = require('fs')
 var https = require('https')
 var express = require('express')
-var bodyParser = require('body-parser')
-var exphbs = require('express-handlebars') // handlebars
+var bodyParser = require('body-parser') // to extract data from the request body
+var exphbs = require('express-handlebars') // handlebars templating
 var sqlite = require('sqlite3')
 
 var app = express()
@@ -55,7 +55,7 @@ app.get('/', function (req, res) {
   console.log('server-index.js> GET received on / ')
   console.log('server-index.js> will render handlebars home.hbs')
   console.log('server-index.js> req.query is: ', req.query)
-  var message = 'Please make your choice below'
+  var message = 'Please make your choice below.'
   if (req.query.message) {
     message = req.query.message
     console.log('server-index.js> req.query.message is: ', req.query.message)
@@ -66,7 +66,7 @@ app.get('/', function (req, res) {
 app.get('/add', function (req, res) {
   console.log('server-index.js> GET received on /add')
   console.log('server-index.js> will render handlebars add.hbs')
-  res.render('add', { message: 'Please choose a type of tree and add any notes that you wish'})
+  res.render('add', { message: 'Please choose a type of tree, and add a place, and notes.'})
 })
 app.get('/show', function (req, res) {
   console.log('server-index.js> GET received on /show')
@@ -116,7 +116,7 @@ app.post('/tree', function (req, res) {
     console.log('server-index.js> tree added to DB: ', tree)
   // res.json({ 'trees': [ tree ]})
   })
-  res.redirect('/?message=Your tree was added')
+  res.redirect('/?message=Your tree was added.')
 // res.render('/', function () { console.log('Your tree has been added.')})
 })
 
