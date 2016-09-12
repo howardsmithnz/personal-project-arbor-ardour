@@ -152,7 +152,7 @@ app.get('/https_test', function (req, res) {
 https.createServer({
   key: fs.readFileSync(__dirname + '/key.pem'),
   cert: fs.readFileSync(__dirname + '/cert.pem')
-}, app).listen(55555, function () {
+}, app).listen(5000, function () {
   console.log('server-index.js> SECURE abarada app listening on port 55555')
 })
 
